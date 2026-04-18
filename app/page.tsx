@@ -13,6 +13,7 @@ import { FeaturesSection } from '@/components/upscaler/features-section';
 import { HowItWorksSection } from '@/components/upscaler/how-it-works-section';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { useUpscaler } from '@/hooks/useUpscaler';
+import { AlertCircle, RefreshCw } from 'lucide-react';
 
 export default function Home() {
   const { uploadedImage, error: uploadError, uploadImage, resetImage } = useImageUpload();
@@ -229,12 +230,27 @@ export default function Home() {
         {/* Error Display */}
         {upscaleError && (
           <motion.div
-            className="fixed bottom-4 right-4 p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive max-w-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-4 right-4 p-4 rounded-xl bg-destructive/10 border border-destructive/30 text-destructive max-w-sm z-50 shadow-lg"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
           >
-            {upscaleError}
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" />
+              <div className="space-y-2">
+                <p className="font-semibold text-sm">Gagal memproses gambar</p>
+                <p className="text-xs opacity-80">{upscaleError}</p>
+                {uploadedImage && (
+                  <button
+                    onClick={handleUpscale}
+                    className="flex items-center gap-1.5 text-xs font-medium underline underline-offset-2 hover:opacity-70 transition-opacity"
+                  >
+                    <RefreshCw className="w-3 h-3" />
+                    Coba lagi
+                  </button>
+                )}
+              </div>
+            </div>
           </motion.div>
         )}
       </div>
