@@ -62,7 +62,7 @@ export function HowItWorksSection() {
 
         <div className="grid md:grid-cols-3 gap-8 relative">
           <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-primary/10 via-secondary/30 to-primary/10" />
-          
+
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -81,7 +81,7 @@ export function HowItWorksSection() {
         <motion.div variants={itemVariants} className="mt-20 text-center space-y-6">
           <h3 className="text-2xl font-bold text-foreground">Siap Meningkatkan Kualitas Gambar?</h3>
           <p className="text-muted-foreground mb-8">Mulai sekarang dan rasakan kemudahan meningkatkan gambar dengan AI</p>
-          <button 
+          <button
             onClick={() => document.getElementById('upload-area')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-4 rounded-xl font-bold text-lg text-black bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all transform hover:scale-105"
           >
